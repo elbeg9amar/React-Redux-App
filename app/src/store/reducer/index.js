@@ -1,52 +1,37 @@
+import {
+    FETCH_JOKE,
+    FETCH_JOKE_SUCCESS,
+    FETCH_JOKE_FAIL
+} from '../actions/JokesAction'
+
 const initialState = {
-    jokes:[{
-        category: "Pun",
-        type: "single",
-        joke: "How do you make holy water? You freeze it and drill holes in it.",
-        flags: {
-        nsfw: false,
-        religious: true,
-        political: false,
-        racist: false,
-        sexist: false
-        },
-        id: 205,
-        lang: "en"
-        },
-        {
-        category: "Programming",
-        type: "single",
-        joke: "Debugging: Removing the needles from the haystack.",
-        flags: {
-        nsfw: false,
-        religious: false,
-        political: false,
-        racist: false,
-        sexist: false
-        },
-        id: 40,
-        lang: "en"
-        },
-        {
-        category: "Miscellaneous",
-        type: "single",
-        joke: "Schrödinger's cat walks into a bar and doesn't.",
-        flags: {
-        nsfw: false,
-        religious: false,
-        political: false,
-        racist: false,
-        sexist: false
-        },
-        id: 199,
-        lang: "en"
-        },],
-    loadingJokes: true,
+    jokes:[],
+    loadingJokes: false,
     errorMessage: ''
 }
 
 export default (state=initialState, action) => {
     switch(action.type) {
+        case FETCH_JOKE:
+            return{
+                ...state,
+                loadingJokes: true,
+                errorMessage:'',
+            }
+        case FETCH_JOKE_SUCCESS:
+            return{
+                ...state,
+                loadingJokes: false,
+                errorMessage:'',
+                jokes: action.payload
+
+            }
+        case FETCH_JOKE_FAIL: 
+            return{
+                ...state,
+                errorMessage: action.payload.message,
+                loadingJokes: false
+            }
         default: return state
     }
 }
