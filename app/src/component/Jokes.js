@@ -1,19 +1,23 @@
 import React from 'react'
+import styled from 'styled-components'
 import { connect } from "react-redux";
 import JokesCard from './JokesCard'
+
+const Styled = styled.div `
+  background-color:black;
+`
 
 
 const Jokes = (props) =>{
     console.log(props)
     return (
-        <div>
-            <h2>from Jokes</h2>
+        <Styled>
             {
                 props.datas.map((data) =>{
                     return <JokesCard data={data} key={data.id}/>
                 })
             }
-        </div>
+        </Styled>
     )
 }
 

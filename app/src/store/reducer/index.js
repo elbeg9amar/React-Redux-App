@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     jokes:[],
-    loadingJokes: false,
+    loadingJokes: true,
     errorMessage: ''
 }
 
